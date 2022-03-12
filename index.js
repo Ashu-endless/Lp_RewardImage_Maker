@@ -5,7 +5,7 @@ for(let bt of document.querySelectorAll('.candy') ){
         // console.log(mk)
         localStorage.setItem("lastname",e.target.innerHTML)
 
-        window.location.href = '/editor.html';
+        window.location.href = './editor.html';
     }
 }
 
