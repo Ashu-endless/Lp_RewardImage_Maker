@@ -3,6 +3,7 @@ var bite = document.querySelector('#bite');
 var img_choosen = document.getElementById('img-choosen')
 var download_btn = document.querySelector('#work-js')
 var name_inp = document.querySelector('#rewardee-name')
+var dwnl_progess = document.querySelector('#download-in-progress');
 var bgsrc = ""
 switch (localStorage.getItem("lastname")) {
     case ` 300 Lp`:
@@ -16,6 +17,7 @@ switch (localStorage.getItem("lastname")) {
         break;
 }
 download_btn.onclick = () => {
+  dwnl_progess.style.display = "grid"
     // document.body.innerHTML = document.body.innerHTML + `<div id="main-container" style="position:absolute;">
     // <canvas id="main" style="border: 2px gold solid;position: absolute;top:36%;right: 9%;" ></canvas>
 
@@ -157,7 +159,8 @@ download_btn.onclick = () => {
         // console
        document.querySelector('#modal').style.display = "none"
         document.querySelector('#main-container').style.display = "none"
-    }) 
+        document.querySelector('#download-in-progress').style.display = "none"
+      }) 
      }, 3000);
     
     
@@ -204,7 +207,7 @@ console.log(interact)
 interact('.resize-drag')
   .resizable({
     // resize from all edges and corners
-    edges: { left: true, right: true, bottom: true, top: true },
+    edges: { left: true, right: true, bottom: false, top: false },
 
     listeners: {
       move (event) {
@@ -237,7 +240,7 @@ interact('.resize-drag')
 
       // minimum size
       interact.modifiers.restrictSize({
-        min: { width: 100, height: 100 }
+        min: { width: 50, height: 50 }
       })
     ],
 
