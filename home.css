@@ -1,0 +1,67 @@
+body{
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+}
+
+/* #main-container {
+    position: absolute;
+    height: 50%;
+    max-height: 300px;
+    width: 50%;
+    max-width: 300px;
+} */
+
+
+img{
+    height: 100%;
+    width: 100%;
+}
+
+/* .user-pic{
+    height: 92px;
+    width: 90px;
+    border-radius: 50%;
+    position: absolute;
+    top: 36%;
+    right: 8%;
+    border: 1.5px gold solid;
+    display: block;
+} */
+
+button#download-img {
+    position: absolute;
+    bottom: 20px;
+}
+
+#main-container {
+    position: absolute;
+    height: 720px;
+    width: 720px;
+}
+
+
+ .user-pic {
+    height: 220px;
+    width: 220px;
+    border-radius: 50%;
+    position: absolute;
+    top: 36%;
+    right: 8%;
+    border: 1.5px gold solid;
+    display: block;
+} 
+
+.user-name {
+        position: absolute;
+        top: 63%;
+        right: 7%;
+        font-size: 30px;
+        color: white;
+        font-family: sans-serif;
+}
+
+input#user-name-inp {
+    position: absolute;
+    bottom: 20px;
+}
