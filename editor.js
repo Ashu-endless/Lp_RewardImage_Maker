@@ -177,9 +177,9 @@ download_btn.onclick = () => {
         link.click();
         // console
        document.querySelector('#modal').style.display = "none"
-        // document.querySelector('#main-container').style.display = "none"
+        document.querySelector('#main-container').style.display = "none"
         document.querySelector('#download-in-progress').style.display = "none"
-        // window.location.href = './editor.html';
+        window.location.href = './editor.html';
       }) 
      }, 3000);
     
