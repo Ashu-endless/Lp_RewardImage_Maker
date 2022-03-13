@@ -3,6 +3,8 @@ var bite = document.querySelector('#bite');
 var img_choosen = document.getElementById('img-choosen')
 var download_btn = document.querySelector('#work-js')
 var name_inp = document.querySelector('#rewardee-name')
+var img_inp = document.querySelector('#rewardee-pic')
+var modal = document.getElementById('modal');
 var dwnl_progess = document.querySelector('#download-in-progress');
 var bgsrc = ""
 switch (localStorage.getItem("lastname")) {
@@ -80,8 +82,7 @@ download_btn.onclick = () => {
 
 
 
-  var img_to_edit = document.querySelector('#rewardee-pic').files[0];
-  console.log(document.querySelector('#rewardee-pic').files)
+  // console.log(document.querySelector('#rewardee-pic').files)
   // console.log(img_to_edit)
   // console.log(img)
   fabric.Image.fromURL(URL.createObjectURL(img), (img) => {
@@ -128,16 +129,16 @@ download_btn.onclick = () => {
        console.log(canvas.backgroundImage)
        canvas.renderAll()
   });
-  console.log(modal.style.display)
-  user_name.style.top = '62%'
+  // console.log(modal.style.display)
+  user_name.style.top = '62.5%'
 
-  console.log((user_name.getBoundingClientRect().width/2))
-  console.log(user_name.style.width)
+  // console.log((user_name.getBoundingClientRect().width/2))
+  // console.log(user_name.style.width)
   // user_name.style.right = `${165 - (user_name.getBoundingClientRect().width/2)}px`
   // user_name.style.right = `${165 - (parseFloat(window.getComputedStyle(user_name).getPropertyValue('width'))/2)}px`
   
-  console.log(user_name.getBoundingClientRect().width/2)
-  console.log(user_name.style.right)
+  // console.log(user_name.getBoundingClientRect().width/2)
+  // console.log(user_name.style.right)
   // user_name.style.right = `${100}px`
   // document.querySelector('#modal').style.display = "none"
   setTimeout(() => {
@@ -168,13 +169,15 @@ download_btn.onclick = () => {
 }
 
 
-var img_inp = document.querySelector('#rewardee-pic')
-var modal = document.getElementById('modal');
+
 
 img_inp.addEventListener('input',function (){
+    console.log(this)
     img = this.files[0]
 modal.style.display = 'block'
 var c_canvas = new fabric.Canvas('resize-img');
+bite.children[0].style.touchAction = "none"
+bite.children[0].style.pointerEvents = "none"
     c_canvas.setHeight(220)
     c_canvas.setWidth(220)
     fabric.Image.fromURL(URL.createObjectURL(this.files[0]), (img) => {
@@ -201,9 +204,13 @@ var c_canvas = new fabric.Canvas('resize-img');
         //  console.log(c_canvas.backgroundImage)
          c_canvas.renderAll()
     });
+    this.parentNode.children[0].innerHTML = "Change Image"
 
 })
-console.log(interact)
+
+
+
+// console.log(interact)
 interact('.resize-drag')
   .resizable({
     // resize from all edges and corners
