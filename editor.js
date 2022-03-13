@@ -163,7 +163,7 @@ download_btn.onclick = () => {
         domtoimage.toJpeg(document.getElementById('main-container'), { quality: 1 })
     .then(function (dataUrl) {
         var link = document.createElement('a');
-        link.download = 'my-image-name.jpeg';
+        link.download = `${user_name.innerHTML}${localStorage.lastname}.jpeg`;
         link.href = dataUrl;
         link.click();
         // console
