@@ -100,8 +100,8 @@ download_btn.onclick = () => {
       
       var shft_x = parseFloat(document.querySelector('.resize-drag').style.left) || 0
       var shft_y = parseFloat(document.querySelector('.resize-drag').style.top) || 0
-      var ins_x = 220 -  (parseFloat(shft_x) + document.querySelector('.resize-drag').getBoundingClientRect().width)
-      var ins_y = 220 -  (parseFloat(shft_y) + document.querySelector('.resize-drag').getBoundingClientRect().height)
+      // var ins_x = 220 -  (parseFloat(shft_x) + document.querySelector('.resize-drag').getBoundingClientRect().width)
+      // var ins_y = 220 -  (parseFloat(shft_y) + document.querySelector('.resize-drag').getBoundingClientRect().height)
   
       img.scaleToHeight(canvas.height )
       img.scaleToWidth(canvas.width )
@@ -152,10 +152,18 @@ download_btn.onclick = () => {
   // user_name.style.right = `${100}px`
   // document.querySelector('#modal').style.display = "none"
   setTimeout(() => {
-    console.log((user_name.getBoundingClientRect().width/2))
+    // console.log((user_name.getBoundingClientRect().width/2))
   user_name.style.right = `${165 - (user_name.getBoundingClientRect().width/2)}px`
-
+    if(user_name.getBoundingClientRect().width/2 > 165){
+      // var r = (user_name.getBoundingClientRect().width/2)-165
+      // console.log(`${30 - Math.floor(r/5)}px`)
+      // user_name.style.fontSize = `${Math.floor(r/5)}px`
+      // user_name.style.fontSize = `25px`
+      user_name.style.right = `${165 - (user_name.getBoundingClientRect().width/2)}px`
+    }
   }, 3000);
+  $(".user-name").arctext({radius: 220, dir: -1})
+  // user_name.style.letterSpacing = `-3px`
 
 
 
@@ -169,9 +177,9 @@ download_btn.onclick = () => {
         link.click();
         // console
        document.querySelector('#modal').style.display = "none"
-        document.querySelector('#main-container').style.display = "none"
+        // document.querySelector('#main-container').style.display = "none"
         document.querySelector('#download-in-progress').style.display = "none"
-        window.location.href = './editor.html';
+        // window.location.href = './editor.html';
       }) 
      }, 3000);
     
