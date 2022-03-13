@@ -11,8 +11,17 @@ switch (localStorage.getItem("lastname")) {
     case ` 300 Lp`:
         bgsrc = "./300lp.jpeg"
         break;
+    case ` 370 Lp`:
+        bgsrc = "./370lp.jpeg"
+        break;
+    case ` 70 Lp`:
+        bgsrc = "./70lp.jpeg"
+        break;
     case ` 1370 Lp`:
         bgsrc = "./1370lp.jpeg"
+        break;
+    case ` 1000 Lp`:
+        bgsrc = "./1000lp.jpeg"
         break;
 
     default:
@@ -130,7 +139,7 @@ download_btn.onclick = () => {
        canvas.renderAll()
   });
   // console.log(modal.style.display)
-  user_name.style.top = '62.5%'
+  user_name.style.top = '63%'
 
   // console.log((user_name.getBoundingClientRect().width/2))
   // console.log(user_name.style.width)
@@ -161,6 +170,7 @@ download_btn.onclick = () => {
        document.querySelector('#modal').style.display = "none"
         document.querySelector('#main-container').style.display = "none"
         document.querySelector('#download-in-progress').style.display = "none"
+        window.location.href = './editor.html';
       }) 
      }, 3000);
     
