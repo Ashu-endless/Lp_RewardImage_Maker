@@ -5,6 +5,7 @@ var download_btn = document.querySelector('#work-js')
 var name_inp = document.querySelector('#rewardee-name')
 var img_inp = document.querySelector('#rewardee-pic')
 var modal = document.getElementById('modal');
+var sv_usr_name;
 var dwnl_progess = document.querySelector('#download-in-progress');
 var bgsrc = ""
 var moveable;
@@ -151,17 +152,28 @@ download_btn.onclick = () => {
   // console.log(user_name.style.right)
   // user_name.style.right = `${100}px`
   // document.querySelector('#modal').style.display = "none"
+  if(user_name.innerHTML.split('').length > 21){
+    user_name.style.fontSize = `28px`
+  }
+  if(user_name.innerHTML.split('').length > 25){
+    user_name.style.fontSize = `24px`
+  }
+  if(user_name.innerHTML.split('').length > 30){
+    user_name.style.fontSize = `20px`
+    user_name.style.top = `${parseInt(user_name.style.top) + 1}%`
+  }
   setTimeout(() => {
     // console.log((user_name.getBoundingClientRect().width/2))
   user_name.style.right = `${165 - (user_name.getBoundingClientRect().width/2)}px`
-    if(user_name.getBoundingClientRect().width/2 > 165){
-      // var r = (user_name.getBoundingClientRect().width/2)-165
-      // console.log(`${30 - Math.floor(r/5)}px`)
-      // user_name.style.fontSize = `${Math.floor(r/5)}px`
-      // user_name.style.fontSize = `25px`
-      user_name.style.right = `${165 - (user_name.getBoundingClientRect().width/2)}px`
-    }
+    // if(user_name.getBoundingClientRect().width/2 > 165){
+    //   // var r = (user_name.getBoundingClientRect().width/2)-165
+    //   // console.log(`${30 - Math.floor(r/5)}px`)
+    //   // user_name.style.fontSize = `${Math.floor(r/5)}px`
+    //   // user_name.style.fontSize = `25px`
+    //   user_name.style.right = `${165 - (user_name.getBoundingClientRect().width/2)}px`
+    // }
   }, 3000);
+  sv_usr_name = user_name.innerHTML
   $(".user-name").arctext({radius: 220, dir: -1})
   // user_name.style.letterSpacing = `-3px`
 
@@ -172,7 +184,7 @@ download_btn.onclick = () => {
         domtoimage.toJpeg(document.getElementById('main-container'), { quality: 1 })
     .then(function (dataUrl) {
         var link = document.createElement('a');
-        link.download = `${user_name.innerHTML}${localStorage.lastname}.jpeg`;
+        link.download = `${sv_usr_name.slice(0,10)}${localStorage.lastname}.jpeg`;
         link.href = dataUrl;
         link.click();
         // console
@@ -223,7 +235,8 @@ bite.children[0].style.pointerEvents = "none"
         //  console.log(c_canvas.backgroundImage)
          c_canvas.renderAll()
     });
-    moveable = new Moveable(document.body, {
+    // moveable = new Moveable(document.body, {
+    moveable = new Moveable(document.querySelector("#movable").parentElement, {
       target: document.querySelector("#movable"),
       // If the container is null, the position is fixed. (default: parentElement(document.body))
       // container: document.querySelector("#movable").parentElement,
@@ -254,9 +267,28 @@ moveable.on("dragStart", ({ target, clientX, clientY }) => {
   beforeDelta, beforeDist, delta, dist,
   clientX, clientY,
 }) => {
+  
   console.log("onDrag left, top", left, top);
+
   target.style.left = `${left}px`;
   target.style.top = `${top}px`;
+  if(left < 0 ){
+    target.style.left = `${0}px`;
+  }
+  if(top < 0 ){
+    target.style.top = `${0}px`;
+  }
+  if(bottom < 0 ){
+    target.style.top = `${target.parentElement.getBoundingClientRect().height - target.getBoundingClientRect().height}px`;
+  }
+  if(right < 0 ){
+    target.style.left = `${target.parentElement.getBoundingClientRect().width - target.getBoundingClientRect().width}px`;
+  }
+
+  // console.log(target.getBoundingClientRect().left,target.getBoundingClientRect().left)
+  // if(target.getBoundingClientRect().left < target.getBoundingClientRect().left ){
+  //   target.style.left = '0px'
+  // }
   // console.log("onDrag translate", dist);
   // target!.style.transform = transform;
 }).on("dragEnd", ({ target, isDrag, clientX, clientY }) => {
@@ -267,9 +299,23 @@ moveable.on("dragStart", ({ target, clientX, clientY }) => {
 moveable.on("resizeStart", ({ target, clientX, clientY }) => {
   console.log("onResizeStart", target);
 }).on("resize", ({ target, width, height, dist, delta, clientX, clientY }) => {
-  console.log("onResize", target);
+  // console.log("onResize", target);
+  
   delta[0] && (target.style.width = `${width}px`);
   delta[1] && (target.style.height = `${height}px`);
+  // if(parseInt(target.style.left) + parseInt(target.style.width) > target.parentElement.getBoundingClientRect().width){
+  //   var w = (parseInt(target.style.left) + parseInt(target.style.width)) - target.parentElement.getBoundingClientRect().width
+  //   target.style.width = `${parseInt(target.style.width) - w}px`
+  //   target.style.height = `${parseInt(target.style.width) - w}px`
+  
+  // }
+  // if(parseInt(target.style.top) + parseInt(target.style.height) > target.parentElement.getBoundingClientRect().height){
+  //   var w = (parseInt(target.style.top) + parseInt(target.style.height)) - target.parentElement.getBoundingClientRect().height
+  //   target.style.height = `${parseInt(target.style.height) - w}px`
+  //   target.style.width = `${parseInt(target.style.height) - w}px`
+    
+  // }
+  
 }).on("resizeEnd", ({ target, isDrag, clientX, clientY }) => {
   console.log("onResizeEnd", target, isDrag);
 });
