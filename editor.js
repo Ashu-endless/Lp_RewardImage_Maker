@@ -303,18 +303,20 @@ moveable.on("resizeStart", ({ target, clientX, clientY }) => {
   
   delta[0] && (target.style.width = `${width}px`);
   delta[1] && (target.style.height = `${height}px`);
-  // if(parseInt(target.style.left) + parseInt(target.style.width) > target.parentElement.getBoundingClientRect().width){
-  //   var w = (parseInt(target.style.left) + parseInt(target.style.width)) - target.parentElement.getBoundingClientRect().width
-  //   target.style.width = `${parseInt(target.style.width) - w}px`
-  //   target.style.height = `${parseInt(target.style.width) - w}px`
+  if(parseInt(target.style.left) + parseInt(target.style.width) > target.parentElement.getBoundingClientRect().width){
+    var w = (parseInt(target.style.left) + parseInt(target.style.width)) - target.parentElement.getBoundingClientRect().width
+    target.style.width = `${parseInt(target.style.width) - w}px`
+    // target.style.height = `${parseInt(target.style.width) - w}px`
+    target.style.height = target.style.width
   
-  // }
-  // if(parseInt(target.style.top) + parseInt(target.style.height) > target.parentElement.getBoundingClientRect().height){
-  //   var w = (parseInt(target.style.top) + parseInt(target.style.height)) - target.parentElement.getBoundingClientRect().height
-  //   target.style.height = `${parseInt(target.style.height) - w}px`
-  //   target.style.width = `${parseInt(target.style.height) - w}px`
+  }
+  if(parseInt(target.style.top) + parseInt(target.style.height) > target.parentElement.getBoundingClientRect().height){
+    var w = (parseInt(target.style.top) + parseInt(target.style.height)) - target.parentElement.getBoundingClientRect().height
+    target.style.height = `${parseInt(target.style.height) - w}px`
+    // target.style.width = `${parseInt(target.style.height) - w}px`
+    target.style.width = target.style.height 
     
-  // }
+  }
   
 }).on("resizeEnd", ({ target, isDrag, clientX, clientY }) => {
   console.log("onResizeEnd", target, isDrag);
